@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, TrashIcon } from 'evergreen-ui';
 
 class Counter extends Component {
     /*state is a speical property in react component which
@@ -40,7 +41,7 @@ class Counter extends Component {
         this.setState({value: this.state.value + 1});
     };*/
 
-    render() {
+    /*render() {
         return (
             <div>
                 {this.props.children}
@@ -48,6 +49,25 @@ class Counter extends Component {
                 <button onClick={ () => this.props.onIncrement(this.props.counter) } className="btn btn-secondary btn-sm">Increment</button>
                 <button disabled={this.disableValue()} onClick={ () => this.props.onDecrement(this.props.counter) } className="btn btn-secondary btn-sm m-2">Decrement</button>
                 <button onClick={ () => this.props.onDelete(this.props.counter.id) } className="btn btn-danger btn-sm m-2">Delete</button>
+            </div>
+        );
+    }*/
+
+    //using evergreen ui
+    render() {
+        return (
+            <div>
+                {this.props.children}
+                <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+                <Button marginRight={32} appearance="primary" intent="success" onClick={ () => this.props.onIncrement(this.props.counter) }>
+                    Increment
+                </Button>
+                <Button marginRight={32} intent="danger" disabled={this.disableValue()} onClick={ () => this.props.onDecrement(this.props.counter) }>
+                    Decrement
+                </Button>
+                <Button marginY={8} marginRight={32} iconBefore={TrashIcon} appearance="primary" intent="danger" onClick={ () => this.props.onDelete(this.props.counter.id) }>
+                    Delete
+                </Button>
             </div>
         );
     }
